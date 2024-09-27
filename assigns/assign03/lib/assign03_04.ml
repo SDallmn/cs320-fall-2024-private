@@ -56,7 +56,7 @@ let split_by_zero lst =
 
 
 let group l = 
-  if is_valid l then
+  if is_valid_list l then
     Some (split_by_zero l)
   else
     None
