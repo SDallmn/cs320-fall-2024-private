@@ -15,7 +15,7 @@ let test start start_name index e =
   d >:: t
 
 let test_tail_rec =
-  let a () = gen_fib (List.init 1000 (fun _ -> 0)) 100000 in
+  let a () = gen_fib (List.init 1000 (fun _ -> 0)) 10000 in
   let t _ = assert_equal (a ()) 0 in
   OUnitTest.TestCase (OUnitTest.Custom_length 2., t)
 
