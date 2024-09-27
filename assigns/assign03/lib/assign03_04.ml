@@ -14,9 +14,8 @@ let rec drop n lst =
       if n <= 0 then lst  (* If n is 0 or negative, return the list as it is *)
       else drop (n - 1) tl  (* Recursively drop elements from the tail *)
 
-(* Function to check if the list is valid *)
 
-(* 
+
 let is_valid_list lst =
   let rec check_sublists lst prev_sign =
     match lst with
@@ -38,30 +37,9 @@ let is_valid_list lst =
         else
           false  (* Signs didn't alternate *)
   in
-  check_sublists lst 0  *)
+  check_sublists lst 0 
 
 
-
-let is_valid lst =
-  let rec check_adjacent prev = function
-    | [] -> true  (* End of the list, valid so far *)
-    | 0 :: hd :: tl ->
-        if sign hd = 0 then false  (* A zero must not be followed by another zero *)
-        else if sign hd = prev then check_adjacent (sign hd)  tl  (* Opposite signs around zero *)
-        else false  (* Not opposite signs *)
-    | hd :: 0 :: tl ->
-        if sign prev = 0 || sign hd = 0 then false  (* No non-zero integers adjacent to zero *)
-        else if sign hd = prev then check_adjacent (sign hd)  tl  (* Same sign *)
-        else false  (* Must be the same sign or zero *)
-    | hd :: tl ->
-        if sign prev = 0 then check_adjacent (sign hd)  tl  (* First element case *)
-        else if sign hd = prev || sign hd = 0 then check_adjacent (sign hd)  tl
-        else false  (* Must be the same sign or zero *)
-
-  in
-  match lst with
-  | [] -> true  (* Empty list is valid *)
-  | hd :: tl -> check_adjacent (sign hd)  tl;;
 
 let split_by_zero lst =
   let rec aux current acc = function
